@@ -1,0 +1,71 @@
+<h2> Search for flights</h2>
+  <%= form_with url: "/flights", method: :get do |form| %>
+    <%= form.label :departure_airport_id, "Departure Airport" %>
+    <%= form.select :departure_airport_id, Airport.order(:id).map { |airport| [airport.code, airport.id] } %>
+    <br>
+    <br>
+    <%= form.label :arrival_airport_id, "Arrival Airport" %>
+    <%= form.select :arrival_airport_id, Airport.order(:id).map { |airport| [airport.code, airport.id] } %>
+    <br>
+    <br>
+    <%= form.label :departure_date, "Departure Date" %>
+    <%= form.date_field :departure_date %>
+    <br>
+    <br>
+    <%= form.label :no_of_passengers, "Number of Passengers" %>
+    <%= form.select :no_of_passengers, [[1, 1], [2, 2], [3, 3], [4, 4]] %>
+    <br>
+    <br>
+    <%= form.submit "Find flights" %>
+  <% end %>
+<div class="flight-results">
+<% if @booking_options %>
+    <% if @booking_options.count >= 1 %>
+      <p class="sub-title">Available Flights:</p>
+      <% @booking_options.each do |flight| %>
+      <%= form_with url: "/flights", method: :get do |f| %>
+      <%= f.radio_button :booking, 'Flight' %> Select this flight <br />
+      <div class="column is-3">
+        <div class="card">
+        <p>Departure Airport: <%= flight.departure_airport.code %></p>
+        <p>Destination: <%= flight.arrival_airport.code %></p>
+        <p>Departure Date: <%= flight.departure_date %></p>
+        <p>Flight Duration: <%= flight.flight_duration / 60 %> hours</p>
+        </div>
+        <br>
+        <br>
+      </div>
+      <%= f.submit "Confirm booking" %>
+      <% end %>
+  <% end %>
+  <% else %>
+  <p>There are no flights available for your selected options</p>
+  <% end %>
+<% else %>
+  <p class="results-placeholder">Choose flight options to see the available flights.</p>
+<% end %>
+</div>
+<% if @flights %>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="columns">
+        <h2> Total Flights: <%= @flights.count %></h2>
+            <% @flights.each do |flight| %>
+                <div class="column is-3">
+                    <div class="card">
+                    <%= flight.departure_airport.code %>
+                    <br>
+                    <%= flight.arrival_airport.code %>
+                    <br>
+                    <%= flight.departure_date %>
+                    <br>
+                    <%= flight.flight_duration %>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+<% end %>

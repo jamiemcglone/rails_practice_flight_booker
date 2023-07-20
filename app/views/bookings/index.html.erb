@@ -1,0 +1,27 @@
+<h1>Bookings</h1>
+<% if @bookings.count >= 1 %>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="columns">
+        <h2> Total Bookings: <%= @bookings.count %></h2>
+            <% @bookings.each do |booking| %>
+                <div class="column is-3">
+                    <div class="card">
+                    <%= booking.flight.departure_airport %>
+                    <br>
+                    <%= flight.arrival_airport.code %>
+                    <br>
+                    <%= flight.departure_date %>
+                    <br>
+                    <%= flight.flight_duration %>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+<% else %>
+<h2>There are no bookings to display</h2>
+<% end %>
