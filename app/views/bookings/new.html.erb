@@ -1,0 +1,17 @@
+<div>
+
+  <%= form_with model: @booking do |booking_form| %>
+    <% params[:no_of_passengers].to_i.times do |i| %>
+      <div>
+        <%= "Passenger #{i+1}" %>
+        <%= booking_form.fields_for :passengers, @booking.passengers.build do |passenger_form| %>
+          <%= passenger_form.label :name%>
+          <%= passenger_form.text_field :name, placeholder: "Name", required: true %>
+          <%= passenger_form.label :email %>
+          <%= passenger_form.email_field :email, placeholder: "Email", required: true %>
+          <% end %>
+          </div>
+          <% end %>
+    <%= booking_form.submit "Confirm booking" %>
+  <% end %>
+</div>

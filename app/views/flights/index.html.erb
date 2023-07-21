@@ -22,8 +22,9 @@
 <% if @booking_options %>
     <% if @booking_options.count >= 1 %>
       <p class="sub-title">Available Flights:</p>
+      <%= form_with model: @booking, url: new_booking_path, method: :get do |f| %>
+      <%= hidden_field_tag :no_of_passengers, params[:no_of_passengers] %>
       <% @booking_options.each do |flight| %>
-      <%= form_with url: "/flights", method: :get do |f| %>
       <%= f.radio_button :booking, 'Flight' %> Select this flight <br />
       <div class="column is-3">
         <div class="card">
@@ -35,9 +36,9 @@
         <br>
         <br>
       </div>
-      <%= f.submit "Confirm booking" %>
       <% end %>
-  <% end %>
+      <%= f.submit "Confirm selection" %>
+      <% end %>
   <% else %>
   <p>There are no flights available for your selected options</p>
   <% end %>

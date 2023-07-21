@@ -7,18 +7,19 @@
             <% @bookings.each do |booking| %>
                 <div class="column is-3">
                     <div class="card">
-                    <%= booking.flight.departure_airport %>
                     <br>
-                    <%= flight.arrival_airport.code %>
+                    <%= booking.flight.departure_airport.code %>
                     <br>
-                    <%= flight.departure_date %>
+                    <%= booking.flight.arrival_airport.code %>
                     <br>
-                    <%= flight.flight_duration %>
+                    <%= booking.flight.departure_date %>
+                    <br>
+                    <%= booking.flight.flight_duration %>
                     </div>
                     <br>
                     <br>
-                </div>
-            <% end %>
+                    </div>
+                    <% end %>
         </div>
     </div>
 </div>

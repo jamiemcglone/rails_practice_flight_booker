@@ -18,3 +18,12 @@
     Flight.create(departure_airport_id: 6, arrival_airport_id: 4, departure_date: Time.now, flight_duration: 300)
     Flight.create(departure_airport_id: 1, arrival_airport_id: 2, departure_date: Time.now, flight_duration: 300)
     Flight.create(departure_airport_id: 3, arrival_airport_id: 2, departure_date: Time.now, flight_duration: 280)
+
+    Passenger.create(name: "Jamie", email: "Jamie")
+    Passenger.create(name: "Bob", email: "bob@bobson.com")
+    Passenger.create(name: "Johnson", email: "John@johnson.com")
+
+    Booking.create(flight_id: 1)
+    Booking.create(flight_id: 2)
+
+    
